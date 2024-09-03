@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -7,9 +8,11 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
+    public static event Action OnPlayerDamaged;
+    public static event Action OnPlayerDeath;
 
-    private static int health = 10;
-    private static int maxHealth = 10;
+    private static int health = 5;
+    private static int maxHealth = 6;
     private static float moveSpeed = 5f;
     private static float fireRate = 0.5f;
 
@@ -38,6 +41,7 @@ public class GameController : MonoBehaviour
     public static void DamagePlayer(int damage)
     {
         health -= damage;
+        OnPlayerDamaged?.Invoke();
 
         if (health <= 0)
         {
