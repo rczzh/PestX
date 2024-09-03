@@ -11,15 +11,17 @@ public class GameController : MonoBehaviour
     public static event Action OnPlayerDamaged;
     public static event Action OnPlayerDeath;
 
-    private static int health = 5;
+    private static int health = 6;
     private static int maxHealth = 6;
     private static float moveSpeed = 5f;
     private static float fireRate = 0.5f;
+    private static float bulletSize = 0.5f;
 
     public static int Health { get => health; set => health = value; }
     public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
     public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public static float FireRate { get => fireRate; set => fireRate = value; }
+    public static float BulletSize { get => bulletSize; set => bulletSize = value; }
 
     public Text healthText;
 
@@ -52,6 +54,22 @@ public class GameController : MonoBehaviour
     public static void HealPlayer(int amount)
     {
         health = Mathf.Min(maxHealth, health + amount);
+        OnPlayerDamaged?.Invoke();
+    }
+
+    public static void MoveSpeedChange(float amount)
+    {
+        moveSpeed += amount;
+    }
+
+    public static void FireRateChange(float amount)
+    {
+        fireRate -= amount;
+    }
+
+    public static void BulletSizeChange(float amount)
+    {
+        BulletSize += amount;
     }
 
     public static void KillPlayer()

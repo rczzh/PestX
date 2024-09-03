@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        playerFireRate = GameController.FireRate;
+        playerMovementSpeed = GameController.MoveSpeed;
     }
 
     private void FixedUpdate()
