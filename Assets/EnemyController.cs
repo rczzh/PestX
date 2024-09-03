@@ -4,8 +4,10 @@ using UnityEngine;
 
 public enum EnemyState
 {
+    Idle,
     Wander,
     Tracking,
+    Attack,
     Death
 }
 
@@ -15,10 +17,14 @@ public class EnemyController : MonoBehaviour
     public EnemyState currentState = EnemyState.Wander;
 
     public float enemySpeed;
-    public float enemyRange;
+    public float trackingRange;
+    public float attackRange;
+    public float attackInterval;
 
     private bool chooseDirection = false;
     private bool isEnemyDead = false;
+    private bool attackCoolDown = false;
+
     private Vector3 randomDirection;
 
     // Start is called before the first frame update
@@ -32,23 +38,35 @@ public class EnemyController : MonoBehaviour
     {
         switch(currentState)
         {
-            case(EnemyState.Wander): Wander();
-            break;
+            case (EnemyState.Idle): Idle();
+                break;
 
-            case(EnemyState.Tracking): Follow();
-            break;
+            case (EnemyState.Wander): Wander();
+                break;
 
-            case(EnemyState.Death):
-            break;
+            case (EnemyState.Tracking): Follow();
+                break;
+
+            case (EnemyState.Attack): Attack();
+                break;
+
+            case (EnemyState.Death):
+                break;
         }
 
-        if (IsPlayerInRange(enemyRange) && currentState != EnemyState.Death)
+        if (IsPlayerInRange(trackingRange) && currentState != EnemyState.Death)
         {
             currentState = EnemyState.Tracking;
         }
-        else if (!IsPlayerInRange(enemyRange) && currentState != EnemyState.Death)
+        else if (!IsPlayerInRange(trackingRange) && currentState != EnemyState.Death)
         {
-            currentState = EnemyState.Wander;
+            //currentState = EnemyState.Wander;
+            currentState = EnemyState.Idle;
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        {
+            currentState = EnemyState.Attack;
         }
     }
 
@@ -60,7 +78,7 @@ public class EnemyController : MonoBehaviour
     private IEnumerator ChooseDirection()
     {
         chooseDirection = true;
-        yield return new WaitForSeconds(Random.Range(2f, 8f));
+        yield return new WaitForSeconds(Random.Range(1f, 3f));
         randomDirection = new Vector3(0, 0, Random.Range(0, 360));
         Quaternion nextRotation = Quaternion.Euler(randomDirection);
         transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(0.5f, 2.5f));
@@ -74,8 +92,17 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(ChooseDirection());
         }
 
-        transform.position += enemySpeed * -transform.right * Time.deltaTime;
-        if (IsPlayerInRange(enemyRange))
+        transform.position += enemySpeed * Time.deltaTime * -transform.right;
+
+        if (IsPlayerInRange(trackingRange))
+        {
+            currentState = EnemyState.Tracking;
+        }
+    }
+
+    void Idle()
+    {
+        if (IsPlayerInRange(trackingRange))
         {
             currentState = EnemyState.Tracking;
         }
@@ -84,6 +111,23 @@ public class EnemyController : MonoBehaviour
     void Follow()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemySpeed * Time.deltaTime);
+    }
+
+    void Attack()
+    {
+        if (!attackCoolDown)
+        {
+            GameController.DamagePlayer(1);
+            StartCoroutine(CoolDown());
+        }
+           
+    }
+
+    private IEnumerator CoolDown()
+    {
+        attackCoolDown = true;
+        yield return new WaitForSeconds(attackInterval);
+        attackCoolDown = false;
     }
 
     public void Death()
