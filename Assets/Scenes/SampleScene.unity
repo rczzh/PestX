@@ -564,7 +564,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -779,7 +779,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1137,6 +1137,8 @@ MonoBehaviour:
   type: 0
   normalColor: {r: 0, g: 0, b: 0, a: 1}
   enterColor: {r: 0.15923643, g: 1, b: 0, a: 1}
+  bossColor: {r: 1, g: 0.61538076, b: 0, a: 1}
+  treasureColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
 --- !u!212 &2122445503
 SpriteRenderer:
   m_ObjectHideFlags: 0

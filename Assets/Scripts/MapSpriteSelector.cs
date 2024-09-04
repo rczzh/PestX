@@ -11,7 +11,7 @@ public class MapSpriteSelector : MonoBehaviour
 
     public bool up, down ,left ,right ;
     public int type;
-    public Color normalColor, enterColor;
+    public Color normalColor, enterColor, bossColor, treasureColor;
     Color mainColor;
     SpriteRenderer rend;
 
@@ -123,6 +123,14 @@ public class MapSpriteSelector : MonoBehaviour
         else if (type == 1)
         {
             mainColor = enterColor;
+        }
+        else if (type == 2)
+        {
+            mainColor = bossColor;
+        }
+        else if (type == 3)
+        {
+            mainColor = treasureColor;
         }
         rend.color = mainColor;
     }

@@ -7,7 +7,7 @@ public class LevelGeneration : MonoBehaviour
     Vector2 levelSize = new Vector2(4, 4);
     Room[,] rooms;
     List<Vector2> takenPositions = new List<Vector2>();
-    int gridSizeX, gridSizeY, numberOfRooms = 20;
+    int gridSizeX, gridSizeY, numberOfRooms = 5;
 
     public GameObject roomWhiteObj;
 
@@ -22,22 +22,16 @@ public class LevelGeneration : MonoBehaviour
         gridSizeX = Mathf.RoundToInt(levelSize.x);
         gridSizeY = Mathf.RoundToInt(levelSize.y);
 
-        Debug.Log("1");
-
         CreateRooms();
-
-        Debug.Log("2");
-
+        MarkRooms();
         SetRoomDoors();
-
-        Debug.Log("3");
-
         DrawMap();
     }
 
     void CreateRooms()
     {
         rooms = new Room[gridSizeX * 2, gridSizeY * 2];
+        // creates starting room
         rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 1);
         takenPositions.Insert(0, Vector2.zero);
         Vector2 checkPos = Vector2.zero;
@@ -56,8 +50,6 @@ public class LevelGeneration : MonoBehaviour
             //new position
             checkPos = NewPosition();
 
-            Debug.Log("1.1");
-
             if (NumberOfNeighbours(checkPos, takenPositions) > 1 && Random.value > randomCompare)
             {
                 int iterations = 0;
@@ -72,6 +64,8 @@ public class LevelGeneration : MonoBehaviour
                     print("Error");
                 }
             }
+
+            // creates normal rooms
             rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, 0);
             takenPositions.Insert(0, checkPos);
         }
@@ -191,6 +185,58 @@ public class LevelGeneration : MonoBehaviour
         return ret;
     }
 
+    void MarkRooms()
+    {
+        List<Room> viableRooms = new List<Room>();
+
+        foreach (var room in rooms)
+        {
+            int ret = 0;
+            if (room == null)
+            {
+                continue;
+            }
+
+            foreach (var takenPos in takenPositions)
+            {
+                if (room.gridPos + Vector2.up == takenPos)
+                {
+                    ret++;
+                }
+                if (room.gridPos + Vector2.down == takenPos)
+                {
+                    ret++;
+                }
+                if (room.gridPos + Vector2.left == takenPos)
+                {
+                    ret++;
+                }
+                if (room.gridPos + Vector2.right == takenPos)
+                {
+                    ret++;
+                }
+            }
+
+            // rooms with only 1 neighbour and not the spawn room
+            if (ret == 1 && room.gridPos != Vector2.zero)
+            {
+                viableRooms.Add(room);
+            }
+        }
+
+        // pick a room from viableRooms to be boss room
+        // removes the room from viableRoom pool
+        var randomInt1 = Random.Range(0, viableRooms.Count);
+        viableRooms[randomInt1].type = 2;
+        viableRooms.Remove(viableRooms[randomInt1]);
+
+        // pick a room from viableRooms to be treasure room
+        // removes the room from viableRoom pool
+        var randomInt2 = Random.Range(0, viableRooms.Count);
+        viableRooms[randomInt2].type = 3;
+        viableRooms.Remove(viableRooms[randomInt2]);
+    }
+
     void SetRoomDoors()
     {
         for (int x = 0; x < ((gridSizeX * 2)); x ++)
@@ -259,11 +305,5 @@ public class LevelGeneration : MonoBehaviour
             mapper.right = room.doorRight;
             mapper.left = room.doorLeft;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
