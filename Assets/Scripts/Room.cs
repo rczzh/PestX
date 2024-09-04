@@ -17,6 +17,8 @@ public class Room : MonoBehaviour
             Debug.Log("You pressed play in the wrong scene");
             return;
         }
+
+        RoomController.instance.RegisterRoom(this);
     }
 
     // Update is called once per frame
@@ -34,5 +36,13 @@ public class Room : MonoBehaviour
     public Vector3 GetRoomCentre()
     {
         return new Vector3(X * Width, Y * Height);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            RoomController.instance.OnPlayerEntersRoom(this);
+        }
     }
 }
