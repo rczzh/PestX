@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGeneration : MonoBehaviour
+public class LevelGeneration
 {
     public Vector2Int Position { get; set; }
     public LevelGeneration(Vector2Int startPosition)

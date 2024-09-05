@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Rooms/SewersMain.unity
+    path: Assets/Scenes/Rooms/Sewers/SewersMain.unity
     guid: dd68f503d556a2842afbdb1cceaed1e4
   - enabled: 1
-    path: Assets/Scenes/Rooms/SewersSpawn.unity
-    guid: 2e0fc5e0b1189184ab2a75133cca1aa9
-  - enabled: 1
-    path: Assets/Scenes/Rooms/SewersEmpty.unity
+    path: Assets/Scenes/Rooms/Sewers/SewersEmpty.unity
     guid: ab90ae22a6d737841a0dcaed8cee2ec4
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Sewers/SewersEnd.unity
+    guid: d44ef7213dae94f44a53a4c5fbb6213d
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Sewers/SewersSpawn.unity
+    guid: 6519f919cedc8224992c3ebf7f3aea0a
+  - enabled: 1
+    path: Assets/Scenes/Rooms/BackAlley/BackAlleyEmpty.unity
+    guid: c2ab7c14b32e751468a0eafb63529081
   m_configObjects: {}
