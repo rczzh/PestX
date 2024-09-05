@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LevelGenerationData
   m_EditorClassIdentifier: 
   numberOfLevelGeneration: 2
-  iterationMin: 3
-  iterationMax: 5
+  iterationMin: 5
+  iterationMax: 10

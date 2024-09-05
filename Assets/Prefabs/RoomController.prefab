@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c83292c4ce46a4e8a658bc11993a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevelName: 
   loadedRooms: []
 --- !u!114 &6647311235362401022
 MonoBehaviour:

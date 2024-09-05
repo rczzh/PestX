@@ -18,12 +18,11 @@ public class Room : MonoBehaviour
         X = x; Y = y;
     }
 
-    public List<Door> doors = new List<Door>();
-
     public Door leftDoor;
     public Door rightDoor;
     public Door topDoor;
     public Door bottomDoor;
+    public List<Door> doors = new List<Door>();
 
     private void Start()
     {
@@ -45,9 +44,9 @@ public class Room : MonoBehaviour
                 case Door.DoorType.top: topDoor = d; break;
                 case Door.DoorType.bottom: bottomDoor = d; break;
             }
-
-            RoomController.instance.RegisterRoom(this);
         }
+
+        RoomController.instance.RegisterRoom(this);
     }
 
     void Update()

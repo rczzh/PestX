@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -27,7 +28,15 @@ public class GameController : MonoBehaviour
 
     public Text healthText;
 
+    private string currentLevel;
+
     // Start is called before the first frame update
+    private void Start()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        currentLevel = currentScene.name;
+        
+    }
     private void Awake()
     {
         if (instance == null)
@@ -40,6 +49,19 @@ public class GameController : MonoBehaviour
     void Update()
     {
         healthText.text = "Health: " + health;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (currentLevel == "SewersMain")
+            {
+                SceneManager.LoadScene("BackAlleyMain");
+            }
+
+            if (currentLevel == "BackAlleyMain")
+            {
+                SceneManager.LoadScene("ChemicalPlantMain");
+            }
+        }
     }
 
     public static void DamagePlayer(int damage)

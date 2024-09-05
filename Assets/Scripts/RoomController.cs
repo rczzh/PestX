@@ -15,7 +15,7 @@ public class RoomController : MonoBehaviour
 {
     public static RoomController instance;
 
-    string currentLevelName = "Sewers";
+    public string currentLevelName = "BackAlley";
 
     RoomInfo currentLoadRoomData;
 
@@ -38,6 +38,7 @@ public class RoomController : MonoBehaviour
 
     public void LoadRoom(string name, int x, int y)
     {
+        //print("loadRoom");
         // checking cords to prevent spawning rooms that may overlap
         if (DoesRoomExist(x, y))
         {
@@ -49,11 +50,14 @@ public class RoomController : MonoBehaviour
         newRoomData.X = x;
         newRoomData.Y = y;
 
+        //print("Enqueue Rooms");
         loadRoomQueue.Enqueue(newRoomData);
     }
 
     IEnumerator LoadRoomRoutine(RoomInfo info)
     {
+        //print("LoadRoomNew");
+
         string roomName = currentLevelName + info.name;
 
         AsyncOperation loadRoom = SceneManager.LoadSceneAsync(roomName, LoadSceneMode.Additive);
@@ -66,6 +70,7 @@ public class RoomController : MonoBehaviour
 
     public void RegisterRoom(Room room)
     {
+        //print("RegisterRoom");
         if (!DoesRoomExist(currentLoadRoomData.X, currentLoadRoomData.Y))
         {
             room.transform.position = new Vector3(currentLoadRoomData.X * room.Width, currentLoadRoomData.Y * room.Height, 0);
@@ -118,13 +123,16 @@ public class RoomController : MonoBehaviour
     {
         if (isLoadingRoom)
         {
+            //print("isLoadingRoom");
             return;
         }
         
         if (loadRoomQueue.Count == 0)
         {
+            //print("loadRoomQueue == 0");
             if (!spanwedBossRoom)
             {
+                //print("spawnBossRoom");
                 StartCoroutine(SpawnBossRoom());
             }
             else if (spanwedBossRoom && !updatedRooms)
@@ -139,6 +147,8 @@ public class RoomController : MonoBehaviour
         }
 
         currentLoadRoomData = loadRoomQueue.Dequeue();
+        //Debug.Log(currentLoadRoomData);
+
         isLoadingRoom = true;
 
         StartCoroutine(LoadRoomRoutine(currentLoadRoomData));

@@ -18,7 +18,10 @@ public class LevelGenerator : MonoBehaviour
         RoomController.instance.LoadRoom("Spawn", 0, 0);
         foreach (Vector2Int roomLocation in rooms)
         {
-            RoomController.instance.LoadRoom(RoomController.instance.GetRandomRoomName(), roomLocation.x, roomLocation.y);
+            //print(roomLocation.y);
+            //print(roomLocation.x);
+            //RoomController.instance.LoadRoom(RoomController.instance.GetRandomRoomName(), roomLocation.x, roomLocation.y);
+            RoomController.instance.LoadRoom("Empty", roomLocation.x, roomLocation.y);
         }
     }
 }

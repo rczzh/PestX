@@ -5,19 +5,37 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Rooms/Sewers/SewersMain.unity
-    guid: dd68f503d556a2842afbdb1cceaed1e4
-  - enabled: 1
-    path: Assets/Scenes/Rooms/Sewers/SewersEmpty.unity
-    guid: ab90ae22a6d737841a0dcaed8cee2ec4
-  - enabled: 1
-    path: Assets/Scenes/Rooms/Sewers/SewersEnd.unity
-    guid: d44ef7213dae94f44a53a4c5fbb6213d
   - enabled: 1
     path: Assets/Scenes/Rooms/Sewers/SewersSpawn.unity
-    guid: 6519f919cedc8224992c3ebf7f3aea0a
+    guid: 00b113b3c5ea9634ea82f099f2e32cdb
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Sewers/SewersEmpty.unity
+    guid: 76957ddf01587194cb99f42d2a71f988
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Sewers/SewersEnd.unity
+    guid: 15e97889b5005764c907ac3a25b4c666
+  - enabled: 1
+    path: Assets/Scenes/Rooms/BackAlley/BackAlleyMain.unity
+    guid: 95acb780cdf26cf4eaae472e4395a32c
+  - enabled: 1
+    path: Assets/Scenes/Rooms/BackAlley/BackAlleySpawn.unity
+    guid: 907262b3a3ff30a4eb020682d52365e2
   - enabled: 1
     path: Assets/Scenes/Rooms/BackAlley/BackAlleyEmpty.unity
+    guid: c395454226ab0d945b190329c7aa0946
+  - enabled: 1
+    path: Assets/Scenes/Rooms/BackAlley/BackAlleyEnd.unity
+    guid: 7ccc24c9fa3d9ec448f52e4cbfabbde5
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChemicalPlant/ChemicalPlantMain.unity
+    guid: 39fd5e4e564fd1f43bf3464097ea3ef8
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChemicalPlant/ChemicalPlantEmpty.unity
     guid: c2ab7c14b32e751468a0eafb63529081
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChemicalPlant/ChemicalPlantSpawn.unity
+    guid: bb9200d25fc027449a7e65a13835ff31
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChemicalPlant/ChemicalPlantEnd.unity
+    guid: 2f2487a0f46cfb04780538b50b905c2c
   m_configObjects: {}
