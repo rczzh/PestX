@@ -36,7 +36,10 @@ public class ItemSpawner : MonoBehaviour
             cumulativeWeight += items[selectedIndex].weight;
         }
 
-        GameObject selectedItem = Instantiate(items[selectedIndex].gameObject, transform.position, Quaternion.identity);
+        GameObject selectedItem = Instantiate(items[selectedIndex].gameObject, transform.position, Quaternion.identity) as GameObject;
+        var parentGameObject = this.transform.parent.gameObject;
+        
+        selectedItem.transform.parent = parentGameObject.transform;
     }
 
     // Update is called once per frame
