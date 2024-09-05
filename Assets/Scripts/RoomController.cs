@@ -36,10 +36,19 @@ public class RoomController : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        if (currentLevelName == "Sewers")
+        {
+            LoadRoom("Empty", 0, 1);
+            LoadRoom("Empty", 1, 1);
+            LoadRoom("TreasureRoom", -1, 1);
+            LoadRoom("End", 0, 2);
+        }
+    }
+
     public void LoadRoom(string name, int x, int y)
     {
-        //print("loadRoom");
-        // checking cords to prevent spawning rooms that may overlap
         if (DoesRoomExist(x, y))
         {
             return;
@@ -50,7 +59,7 @@ public class RoomController : MonoBehaviour
         newRoomData.X = x;
         newRoomData.Y = y;
 
-        //print("Enqueue Rooms");
+        print("Enqueue Rooms");
         loadRoomQueue.Enqueue(newRoomData);
     }
 

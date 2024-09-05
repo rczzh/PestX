@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/Sewers/SewersSpawn.unity
     guid: 00b113b3c5ea9634ea82f099f2e32cdb
   - enabled: 1
+    path: Assets/Scenes/Rooms/Sewers/SewersTreasureRoom.unity
+    guid: bf9e264e5f42ab44f8c1d0eae24f1627
+  - enabled: 1
     path: Assets/Scenes/Rooms/Sewers/SewersEmpty.unity
     guid: 76957ddf01587194cb99f42d2a71f988
   - enabled: 1
