@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        print(player);
     }
 
     // Update is called once per frame
@@ -131,6 +132,7 @@ public class EnemyController : MonoBehaviour
 
     public void Death()
     {
+        RoomController.instance.UpdateRooms();
         Destroy(gameObject);
     }
 }

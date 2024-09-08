@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/Sewers/SewersTreasureRoom.unity
     guid: bf9e264e5f42ab44f8c1d0eae24f1627
   - enabled: 1
+    path: Assets/Scenes/Rooms/Sewers/SewersObstacleRoom.unity
+    guid: 2f83995e855d135458477c2f82045d4d
+  - enabled: 1
     path: Assets/Scenes/Rooms/Sewers/SewersEmpty.unity
     guid: 76957ddf01587194cb99f42d2a71f988
   - enabled: 1
