@@ -40,7 +40,7 @@ public class RoomController : MonoBehaviour
     {
         if (currentLevelName == "Sewers")
         {
-            LoadRoom("Empty", 0, 1);
+            LoadRoom("ObstacleRoom", 0, 1);
             LoadRoom("Empty", 1, 1);
             LoadRoom("TreasureRoom", -1, 1);
             LoadRoom("End", 0, 2);
@@ -59,7 +59,6 @@ public class RoomController : MonoBehaviour
         newRoomData.X = x;
         newRoomData.Y = y;
 
-        print("Enqueue Rooms");
         loadRoomQueue.Enqueue(newRoomData);
     }
 
@@ -167,6 +166,69 @@ public class RoomController : MonoBehaviour
     {
         CameraController.instance.currentRoom = room;
         currentRoom = room;
+
+        StartCoroutine(RoomCoroutine());
+    }
+
+    public IEnumerator RoomCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        UpdateRooms();
+    }
+
+    public void UpdateRooms()
+    {
+        foreach(Room room in loadedRooms)
+        {
+            if (currentRoom != room)
+            {
+                print("Whatsgoingon");
+                EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
+
+                if (enemies != null)
+                {
+                    print("enemies present");
+                    foreach (Door door in room.GetComponentsInChildren<Door>())
+                    {
+                        door.GetComponent<BoxCollider2D>().enabled = false;
+                    }
+
+                    foreach (EnemyController enemy in enemies)
+                    {
+                        print(enemy);
+                    }
+                }
+                else
+                {
+                    print("no more enemies");
+                    foreach (Door door in room.GetComponentsInChildren<Door>())
+                    {
+                        door.GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                print("else");
+                EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
+                if (enemies.Length > 0)
+                {
+                    print("enemies left");
+                    foreach (Door door in room.GetComponentsInChildren<Door>())
+                    {
+                        door.GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                }
+                else
+                {
+                    print("enemies slain");
+                    foreach (Door door in room.GetComponentsInChildren<Door>())
+                    {
+                        door.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+                }
+            }
+        }
     }
 
     IEnumerator SpawnBossRoom()

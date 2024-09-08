@@ -123,7 +123,7 @@ public class Room : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            RoomController.instance.OnPlayerEntersRoom(this);
+            RoomController.instance.StartCoroutine(RoomController.instance.RoomCoroutine());
         }
     }
 }

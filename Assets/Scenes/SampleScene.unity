@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c83292c4ce46a4e8a658bc11993a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevelName: BackAlley
   loadedRooms: []
 --- !u!4 &526927889
 Transform:
@@ -461,8 +462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -638.4, y: 479.9}
-  m_SizeDelta: {x: 643.14624, y: 120.26456}
+  m_AnchoredPosition: {x: -187.12, y: 160.68}
+  m_SizeDelta: {x: 217.75183, y: 48.649567}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816950821
 MonoBehaviour:
@@ -608,7 +609,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -823,7 +824,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
